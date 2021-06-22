@@ -23,7 +23,7 @@ color = input("Color: ")
 
 #   Propiedades al iniciar el juego
 def inicializarPropiedades():
-    jugadores[0][3] = [["EUA",200], ["BRASIL",200], ["ITALIA",300], ["ALEMANIA",300], ["EGIPTO", 400], ["ARGELIA", 400], ["MADAGASCAR",500], ["RUSIA",300], ["TURQUIA",400], ["CHINA",500]]
+    jugadores[1][3] = [["EUA",200], ["BRASIL",200], ["ITALIA",300], ["ALEMANIA",300], ["EGIPTO", 400], ["ARGELIA", 400], ["MADAGASCAR",500], ["RUSIA",300], ["TURQUIA",400], ["CHINA",500]]
 
 #   Inicializar juego
 def inicializar():
@@ -71,7 +71,7 @@ def casillas(casilla:str, jugador:int):
         if op == 2:
             print("Cobras {} BTC al banco".format(btc))
             jugadores[jugador][2] += btc
-    elif casillas == "deportado":
+    elif casilla == "deportado":
         #   Vas a Groelandia
         print("Te vas a Groelandia")
         jugadores[jugador][1] = 30 
@@ -83,6 +83,7 @@ def marcador():
     print("{}: {} {} BTC\t\tCPU: {} {} BTC".format(jugadores[0][0], tableroA[jugadores[0][1]][0], jugadores[0][2], tableroA[jugadores[1][1]][0], jugadores[1][2]))
 
 #  Turnos
+#   0 -> Jugador and 1 -> CPU
 def turno(jugador:int, otro:int):
     tiro = dados()
     jugadores[jugador][1] += tiro
@@ -129,12 +130,12 @@ def turno(jugador:int, otro:int):
         print("Caiste en una casilla de {}".format(tableroA[jugadores[jugador][1]][0]))
         casillas(tableroA[jugadores[jugador][1]][0], jugador)
             
-
+#   Comienza el juego
 inicializar()
 while True:
     turnos += 1
     print("----------------------------------------------------------------------")
-    print("\tTurno " + str(turnos))
+    print("\t\tTurno " + str(turnos))
     marcador()
     turno(0,1)
     #   Comprobar si jugador pierde o no
